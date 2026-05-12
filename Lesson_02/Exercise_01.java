@@ -4,6 +4,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Exercise_01 {
+
+    static void main(String[] args) {
+
+        List<KycStatus> statuses = List.of(
+                new KycStatus.Verified("C-001", LocalDate.of(2026, 5, 10)),
+                new KycStatus.Pending("C-002", "Passport"),
+                new KycStatus.Rejected("C-003", "Address mismatch"),
+                new ReviewRequest("C-003", "Address mismatch")
+        );
+
+        for (KycStatus s : statuses) {
+            System.out.println(describe(s));
+        }
+    }
+
     public sealed interface KycStatus
             permits KycStatus.Verified,
             KycStatus.Pending,
@@ -36,19 +51,7 @@ public class Exercise_01 {
         };
     }
 
-    static void main(String[] args) {
 
-        List<KycStatus> statuses = List.of(
-                new KycStatus.Verified("C-001", LocalDate.of(2026, 5, 10)),
-                new KycStatus.Pending("C-002", "Passport"),
-                new KycStatus.Rejected("C-003", "Address mismatch"),
-                new ReviewRequest("C-003", "Address mismatch")
-        );
-
-        for (KycStatus s : statuses) {
-            System.out.println(describe(s));
-        }
-    }
 
     /*class CustomStatus implements KycStatus {
     }*/
